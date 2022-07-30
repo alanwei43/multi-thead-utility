@@ -1,0 +1,44 @@
+// https://code.visualstudio.com/docs/remote/devcontainerjson-reference
+{
+  "name": "multi-thead-utility",
+  "build": {
+    "dockerfile": "dev.Dockerfile",
+    "context": "../"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        },
+        "json.maxItemsComputed": 500
+      }
+    }
+  },
+  "forwardPorts": [
+    8095
+  ],
+  "postCreateCommand": "sudo chown node node_modules",
+  "workspaceMount": "source=${localWorkspaceFolder}/,target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=multi-thead-utility-node-modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+    // macOS/Linux 环境可以取消注释以下行, 即可自动将.ssh目录挂载到容器内
+    // , "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind"
+    // Windows 环境可以取消注释以下行, 即可自动将.ssh目录挂载到容器内
+    //, "source=C:${localEnv:HOMEPATH}/.ssh,target=/home/node/.ssh,type=bind"
+  ],
+  "extensions": [
+	"eamodio.gitlens",
+	"editorconfig.editorconfig",
+	"esbenp.prettier-vscode",
+	"dbaeumer.vscode-eslint",
+	"apollographql.vscode-apollo",
+	"GraphQL.vscode-graphql",
+	"Orta.vscode-jest",
+	"firsttris.vscode-jest-runner"
+],
+  "containerUser": "node"
+}
