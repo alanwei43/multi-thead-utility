@@ -4,7 +4,6 @@
 export interface MethodResult {
   type: "result";
   id: string;
-
   result: any;
   error?: string;
 }

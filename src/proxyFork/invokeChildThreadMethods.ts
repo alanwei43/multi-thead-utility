@@ -26,7 +26,7 @@ export function invokeChildThreadMethods<T>(
   }
   const cp: ChildProcess = fork(forkOpts.module, forkOpts.args, forkOpts.options);
   return {
-    invoke: proxyOtherThreadMethods(cp, proxyOpts || {}),
+    invoke: proxyOtherThreadMethods<T>(cp, proxyOpts || {}),
     thread: cp
   };
 }
