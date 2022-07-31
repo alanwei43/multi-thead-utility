@@ -1,4 +1,3 @@
-const { TIMEOUT } = require("dns");
 const { exposeMethodsToOtherThread } = require("../../../dist");
 
 exposeMethodsToOtherThread(process, {
